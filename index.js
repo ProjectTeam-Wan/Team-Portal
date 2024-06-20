@@ -9,6 +9,10 @@ app.get("/", (req, res) =>{
     res.render("index.ejs")
 })
 
+app.get("/catconf", (req, res) =>{
+    res.render("catConf.ejs")
+})
+
 app.listen(port, (req,res) => {
     console.log(`Server is running in port ${port}`)
 })
