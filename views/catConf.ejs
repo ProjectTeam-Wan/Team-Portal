@@ -1,25 +1,65 @@
 <%- include("partials/header.ejs") %>
-                
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-
-                    <div class="">
-                    <div class="form-floating mb-3 " >
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                        <label for="floatingInput">Email address</label>
-                      </div>
-                      <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                        <label for="floatingPassword">Password</label>
-                      </div>
-                    </div>
 
 
 
+<!-- Need To Change all The "Email" word with the "ip" word -->
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
 
-                </div>
-                <!-- /.container-fluid -->
+    <div class="w-50 ml-3">
+      <h1 class="mb-5"> Cat Configuration Creator </h1>
+      <form id="myForm" action="/catconf" method="POST">
+        <div class="mb-3 eliran">
+          <select name="dorpdownList" id="dropdown" class="form-select form-select-lg" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">ver 2</option>
+            <option value="2">ver 2 control</option>
+            <option value="3">ver 3</option>
+          </select>
+        </div>
+    <div class="form-floating mb-3">
+        <input name="RedEmail" type="text" class="form-control" id="floatingInput" placeholder="Red Email">
+        <label for="floatingInput">Red Email</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input name="BlackEmail" type="text" class="form-control" placeholder="Black Email">
+        <label for="floatingInput">Black Email</label>  
+      </div>
+      <div class="form-floating mb-3">
+        <input name="EmailSM" type="text" class="form-control" placeholder="Email Subnet Mask">
+        <label for="floatingInput">Email Subnet Mask</label>
+      </div>
+      <div class="form-floating mb-3" id="gateway">
+        <input name="EmailGW" type="text" class="form-control" placeholder="Email Gateway">
+        <label for="floatingInput">Email Gateway</label>
+      </div>
+      <div class="form-floating mb-3" id="controlStation">
+        <input name="controlStation" type="text" class="form-control" placeholder="Control Station">
+        <label for="floatingInput">Control Station</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input name="controlCat" type="text" class="form-control" placeholder="Control Cat">
+        <label for="floatingInput">Control Cat</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input name="catName" type="text" class="form-control" placeholder="Cat Name">
+        <label for="floatingInput">Cat Name</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      
+    </form>
+    </div>
+    
+
+
+
+
+
+</div>
+<!-- /.container-fluid -->
+
+
 
 <%- include("partials/footer.ejs") %>
