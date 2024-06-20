@@ -17,7 +17,25 @@ app.get("/catconf", (req, res) =>{
 })
 
 app.post("/catconf", (req, res) =>{
-    console.log(req.body)
+    // console.log(req.body["dropdownList"])
+    const dropListValue = req.body["dropdownList"]
+
+    var redEmail = req.body["RedEmail"]
+    var blackEmail = req.body["BlackEmail"]
+    var emailSM = req.body["EmailSM"]
+    var controlStation = req.body["controlStation"]
+    var catName = req.body["catName"]
+    
+    switch (dropListValue) {
+        case "1":
+        case "3":
+        var emailGW = req.body["EmailGW"]
+        var controlCat = req.body["controlCat"]
+        break;
+    
+        default: console.log(req.body)
+        }
+    
 })
 
 app.listen(port, (req,res) => {
