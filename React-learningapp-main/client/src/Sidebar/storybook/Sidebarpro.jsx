@@ -16,7 +16,7 @@ import { Typography } from "./components/Typography"
 import { PackageBadges } from "./components/PackageBadges"
 import Homepage from "../../pages/Homepage"
 import { Link } from "react-router-dom"
-
+import './sidebarpro.css'
 import { FaCat } from "react-icons/fa";
 
 const themes = {
@@ -91,7 +91,7 @@ export const Sidebarpro = () => {
   const menuItemStyles = {
     root: {
       fontSize: "13px",
-      fontWeight: 400
+      fontWeight: 550
     },
     icon: {
       color: themes[theme].menu.icon,
@@ -155,15 +155,7 @@ export const Sidebarpro = () => {
           style={{ marginBottom: "24px", marginTop: "16px" }}
         />
         <div style={{ flex: 1, marginBottom: "32px" }}>
-          <div style={{ padding: "0 24px", marginBottom: "8px" }}>
-            <Typography
-              variant="body2"
-              fontWeight={600}
-              style={{ opacity: collapsed ? 0 : 0.7, letterSpacing: "0.5px" }}
-            >
-              General
-            </Typography>
-          </div>
+
 
           <div
             style={{
@@ -182,19 +174,31 @@ export const Sidebarpro = () => {
           </div>
 
           <Menu menuItemStyles={menuItemStyles}>
-            <Link to="/catconf" style={{ textDecoration: 'none' }}>
+            <Link to="/catconf" style={{ textDecoration: 'none'}}>
+            <div>
               <MenuItem
                 icon={<FaCat />}
+
               // suffix={<Badge variant="success">New</Badge>}
               >
                 Cat Configuration Craetor
               </MenuItem>
+              </div>
             </Link>
 
           </Menu>
 
           <br></br>
 
+          <div style={{ padding: "0 24px", marginBottom: "8px" }}>
+            <Typography
+              variant="body2"
+              fontWeight={600}
+              style={{ opacity: collapsed ? 0 : 0.7, letterSpacing: "0.5px" }}
+            >
+              General
+            </Typography>
+          </div>
           <Menu menuItemStyles={menuItemStyles}>
             <SubMenu
               label="Charts"
