@@ -174,15 +174,15 @@ export const Sidebarpro = () => {
           </div>
 
           <Menu menuItemStyles={menuItemStyles}>
-            <Link to="/catconf" style={{ textDecoration: 'none'}}>
-            <div>
-              <MenuItem
-                icon={<FaCat />}
+            <Link to="/catconf" style={{ textDecoration: 'none' }}>
+              <div>
+                <MenuItem
+                  icon={<FaCat />}
 
-              // suffix={<Badge variant="success">New</Badge>}
-              >
-                Cat Configuration Craetor
-              </MenuItem>
+                // suffix={<Badge variant="success">New</Badge>}
+                >
+                  Cat Configuration Craetor
+                </MenuItem>
               </div>
             </Link>
 

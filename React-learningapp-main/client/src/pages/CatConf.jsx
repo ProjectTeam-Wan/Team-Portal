@@ -40,7 +40,7 @@ function CatConf() {
             [name]: value
         });
     }
-    
+
     // prevening from the submit button to refresh the page
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -53,7 +53,7 @@ function CatConf() {
 
 
     return (
-        <>
+        <div className='cat-conf-div'>
             <div className='form'>
                 <Form onSubmit={handleSubmit}>
                     <Form.Select className="my-3" aria-label="Default select example" name="catType" onChange={handleChange}>
@@ -93,7 +93,7 @@ function CatConf() {
             </div>
 
 
-        </>
+        </div>
     )
 }
 

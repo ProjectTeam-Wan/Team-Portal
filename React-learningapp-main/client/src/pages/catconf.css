@@ -1,11 +1,17 @@
-.form{
+.cat-conf-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.form {
     width: 50%;
     margin-left: 15px;
     margin-top: 15px;
     background-color: coral;
     padding: 10px;
 }
-.eliran{
+
+.eliran {
     width: 50%;
     background-color: lightblue;
     margin-left: 15px;
