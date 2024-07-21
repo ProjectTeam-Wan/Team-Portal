@@ -17,7 +17,7 @@ import { PackageBadges } from "./components/PackageBadges"
 import Homepage from "../../pages/Homepage"
 import { Link } from "react-router-dom"
 import './sidebarpro.css'
-import { FaCat } from "react-icons/fa";
+import { FaCat, FaStackOverflow } from "react-icons/fa";
 
 const themes = {
   light: {
@@ -135,7 +135,6 @@ export const Sidebarpro = () => {
       toggled={toggled}
       onBackdropClick={() => setToggled(false)}
       onBreakPoint={setBroken}
-      image="https://user-images.githubusercontent.com/25878302/144499035-2911184c-76d3-4611-86e7-bc4e8ff84ff5.jpg"
       rtl={rtl}
       breakPoint="md"
       backgroundColor={hexToRgba(
@@ -174,16 +173,14 @@ export const Sidebarpro = () => {
           </div>
 
           <Menu menuItemStyles={menuItemStyles}>
-            <Link to="/catconf" style={{ textDecoration: 'none'}}>
-            <div>
+            <Link to="/catconf" style={{ textDecoration: 'none' }}>
+
               <MenuItem
                 icon={<FaCat />}
-
-              // suffix={<Badge variant="success">New</Badge>}
               >
                 Cat Configuration Craetor
               </MenuItem>
-              </div>
+
             </Link>
 
           </Menu>
@@ -269,7 +266,7 @@ export const Sidebarpro = () => {
             </MenuItem>
           </Menu>
         </div>
-        <SidebarFooter collapsed={collapsed} />
+
       </div>
     </Sidebar>
 
