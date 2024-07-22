@@ -12,7 +12,7 @@ function GreekCatTemp({catName, blackCat, redCat, dgCat, controlStation, control
       {v3 ? null : <p> proxy</p>}
       <p> my control station is {controlStation}</p>
       <p> my control cat is {controlCat}</p>
-      <p>Here we need to add the correct configuration needed!</p>
+      <p>Here we need to add the correct configuration!</p>
     </div>
   )
 }

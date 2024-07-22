@@ -17,7 +17,9 @@ import { PackageBadges } from "./components/PackageBadges"
 import Homepage from "../../pages/Homepage"
 import { Link } from "react-router-dom"
 import './sidebarpro.css'
-import { FaCat, FaStackOverflow } from "react-icons/fa";
+import { FaCat, FaTable } from "react-icons/fa";
+
+
 
 const themes = {
   light: {
@@ -171,18 +173,24 @@ export const Sidebarpro = () => {
               Cats
             </Typography>
           </div>
-
           <Menu menuItemStyles={menuItemStyles}>
             <Link to="/catconf" style={{ textDecoration: 'none' }}>
-
               <MenuItem
                 icon={<FaCat />}
               >
-                Cat Configuration Craetor
+                Cat Configuration Creator
               </MenuItem>
-
             </Link>
-
+          </Menu>
+          <Menu menuItemStyles={menuItemStyles}>
+            <Link to="/catsTable" style={{ textDecoration: 'none' }}>
+              <MenuItem
+                icon={<FaTable />
+                }
+              >
+                Cats Table
+              </MenuItem>
+            </Link>
           </Menu>
 
           <br></br>
