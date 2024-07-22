@@ -10,28 +10,16 @@ import './app.css'
 function App() {
   return (
 
-    // <div
-    //   style={{
-    //     display: "flex",
-    //     height: "100%",
-    //     width: "100%"
-
-    //   }}
-    // >
-
       <BrowserRouter>
         <Sidebarpro />
-        {/* <main> */}
           <div className="appMainPage">
             <Routes>
               <Route path="/" element={<Homepage />} />
               <Route path='/catconf' element={<CatConf />} />
             </Routes>
           </div>
-        {/* </main> */}
       </BrowserRouter>
 
-    // </div >
 
   )
 }
