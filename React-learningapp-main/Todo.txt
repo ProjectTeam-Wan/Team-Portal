@@ -2,3 +2,4 @@
 2. לעשות לכל עמוד קובץ CSS משלו.
 3. לסדר את הmenuItems שיראו יותר טוב.
 4. ליצור form ו-conf של קשת רחבה ולשייך את זה בCatConf.jsx.
+https://www.primefaces.org/primereact-v8/datatable/
