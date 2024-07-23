@@ -2,8 +2,10 @@
   position: absolute;
   left: 0;
   top: 0;
+  font-size: 15px;
   height: 100%;
-  width: 60px; /* default width when closed */
+  width: 60px;
+  /* default width when closed */
   background-color: #333;
   color: #fff;
   transition: width 0.3s;
@@ -14,26 +16,40 @@
 }
 
 .sidebar.open {
-  width: 200px; /* width when open */
+  width: 200px;
+  /* width when open */
 }
 
 .sidebar-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-
   width: 100%;
-  padding: 10px;
+  padding: 5px;
+  transition: background 0.5s, transform 0.5s ease-in-out;
 }
-.sidebar-header h1{
-  font-size: 20px;
+
+.sidebar-header span {
+  font-size: 25px;
+  color: #c5cace;
+  opacity: 0;
+  transform: translateX(-20px);
 }
+
+.sidebar.open .sidebar-header span {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.8s ease-in-out, transform 0.5s ease-in-out;
+}
+
 .hamburger {
   background: none;
   border: none;
   color: #fff;
   cursor: pointer;
-  font-size: 25px;
+  font-size: 35px;
+  color: #45b4e8;
+
+
 }
 
 .sidebar-menu {
@@ -41,13 +57,16 @@
   width: 100%;
 }
 
+
 .sidebar-item {
   display: flex;
+  flex-direction: row;
   align-items: center;
   width: 100%;
+  height: 40px;
   padding: 10px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.3s ease-in-out;
 }
 
 .sidebar-item:hover {
@@ -55,22 +74,29 @@
 }
 
 .icon {
-  font-size: 24px;
-  margin-right: 10px;
+  width: 30px;
+  min-width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  display: inline-block;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #45b4e8;
 }
 
-.sidebar-item span {
-  display: none;
+.sidebar-text {
+  color: #c5cace;
+  opacity: 0;
+  margin-left: 15px;
+  transform: translateX(-20px);
 }
 
-.sidebar.open .sidebar-item span {
-  display: inline;
-}
+.sidebar.open .sidebar-text {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.8s ease-in-out, transform 0.3s ease-in-out;
 
-.sidebar-header h1{
-  display: none;
-}
-
-.sidebar.open .sidebar-header h1 {
-  display: block;
 }
