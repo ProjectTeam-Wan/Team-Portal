@@ -5,7 +5,7 @@ import { Sidebarpro } from './Sidebar/storybook/Sidebarpro'
 import CatConf from './pages/CatConf'
 import './app.css'
 import CatsTable from './pages/CatsTable'
-// import Table from './components/Table'
+import PageNotFound from './pages/PageNotFound'
 
 
 
@@ -19,6 +19,7 @@ function App() {
               <Route path="/" element={<Homepage />} />
               <Route path='/catconf' element={<CatConf />} />
               <Route path='/catsTable' element={<CatsTable />} />
+              <Route path='*' element={<PageNotFound />} />
             </Routes>
           </div>
       </BrowserRouter>
