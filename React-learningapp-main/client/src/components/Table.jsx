@@ -20,7 +20,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 const racks = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3'] // temporary array for racks dropList
 
 
-const Example = () => {
+const Table = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -112,6 +112,34 @@ const Example = () => {
           align: 'left',
         },
       },
+      {
+        accessorKey: 'Test',
+        header: 'Test',
+        enableEditing: true,
+        size: 230,
+        minSize: 140,
+        maxSize: 250,
+        muiTableHeadCellProps: {
+          align: 'left',
+        },
+        muiTableBodyCellProps: {
+          align: 'left',
+        },
+      },
+      {
+        accessorKey: 'Test',
+        header: 'Test',
+        enableEditing: true,
+        size: 230,
+        minSize: 140,
+        maxSize: 250,
+        muiTableHeadCellProps: {
+          align: 'left',
+        },
+        muiTableBodyCellProps: {
+          align: 'left',
+        },
+      },
     ],
     [],
   );
@@ -164,7 +192,7 @@ const Example = () => {
     enableColumnOrdering: true,
     enableColumnResizing: true,
     enableRowNumbers: true,
-    enableRowSelection: true,
+    // enableRowSelection: true,
     enableStickyHeader: true,
     enableColumnActions: false,
     columnFilterDisplayMode: 'popover',
@@ -212,12 +240,13 @@ const Example = () => {
         },
       },
     },
-    positionActionsColumn: 'last', // make the action column to be last position
+    // positionActionsColumn: 'last', // make the action column to be last position
     getRowId: (row) => row.id,
     muiTableContainerProps: {
       sx: {
-        minHeight: '580px',
-        maxHeight: '580px',
+        minHeight: '80vh',
+        maxHeight: '80vh',
+        maxWidth: '81vw' // just for my laptop screen!!!
       },
     },
     onCreatingRowSave: handleCreateCat,
@@ -281,11 +310,12 @@ const Example = () => {
           desc: false,
         },
       ],
+      columnPinning: { right: ['mrt-row-actions']},
     },
 
   });
 
-  return <MaterialReactTable table={table} />;
+  return <Box sx={{ width: '100%', height: '100%' }}><MaterialReactTable table={table} /></Box>
 };
 
-export default Example;
+export default Table;

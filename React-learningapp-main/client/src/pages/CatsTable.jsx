@@ -1,10 +1,11 @@
 import React from 'react'
+import Table from '../components/Table'
 
 function CatsTable() {
   return (
-    <div>
-      this is table of cats
-    </div>
+    <>
+      <Table />
+    </>
   )
 }
 
