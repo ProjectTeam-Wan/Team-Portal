@@ -16,12 +16,19 @@ import {
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+
 
 const racks = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3'] // temporary array for racks dropList
 
-
 const Table = () => {
   const [data, setData] = useState([]);
+  const [openSnackBar, setOpenSnackBar] = useState({
+    isOpen: false,
+    action: ''
+  });
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -144,12 +151,18 @@ const Table = () => {
     [],
   );
 
+  const handleSnackbarClose = () => {
+    setOpenSnackBar({isOpen: false, action:''});
+  };
+
+
   // CREATE action
   const handleCreateCat = async ({ values, table }) => {
     try {
       // Post values to server
       const response = await axios.post('http://localhost:3001/addCat', values);
       setData(response.data.rows);
+      setOpenSnackBar({isOpen: true, action:'cat added successfully'})
       table.setCreatingRow(null); // Exit creating mode
     } catch (error) {
       console.error('Error creating Cat:', error);
@@ -163,6 +176,7 @@ const Table = () => {
       // Post values to server
       const response = await axios.put(`http://localhost:3001/updateCat/${rowId}`, values);
       setData(response.data.rows);
+      setOpenSnackBar({isOpen: true, action:'cat edited successfully'})
       table.setEditingRow(null); // Exit editing mode
     } catch (error) {
       console.error('Error updating cat:', error);
@@ -176,6 +190,7 @@ const Table = () => {
       try {
         const response = await axios.delete(`http://localhost:3001/deleteCat/${rowId}`);
         setData(response.data.rows);
+        setOpenSnackBar({isOpen: true, action:'cat removed successfully'})
       } catch (error) {
         console.error('Error deleting cat:', error);
       }
@@ -222,15 +237,15 @@ const Table = () => {
         },
       },
       'mrt-row-numbers': {
-          size: 30,
-          muiTableHeadCellProps: {
-            align: 'center', //change row numbering head cell props
-          },
-          muiTableBodyCellProps: {
-            align: 'center', //change row numbering head cell props
-          },
+        size: 30,
+        muiTableHeadCellProps: {
+          align: 'center', //change row numbering head cell props
         },
-        'mrt-row-select': {
+        muiTableBodyCellProps: {
+          align: 'center', //change row numbering head cell props
+        },
+      },
+      'mrt-row-select': {
         size: 20,
         muiTableHeadCellProps: {
           align: 'center', //change row select head cell props
@@ -310,12 +325,28 @@ const Table = () => {
           desc: false,
         },
       ],
-      columnPinning: { right: ['mrt-row-actions']},
+      columnPinning: { right: ['mrt-row-actions'] },
     },
 
   });
 
-  return <Box sx={{ width: '100%', height: '100%' }}><MaterialReactTable table={table} /></Box>
+  return <Box sx={{ width: '100%', height: '100%' }}>
+    <MaterialReactTable table={table} />
+    <Snackbar
+      open={openSnackBar.isOpen}
+      autoHideDuration={3000}
+      onClose={handleSnackbarClose}
+    >
+      <Alert
+        onClose={handleSnackbarClose}
+        severity="success"
+        variant="filled"
+        sx={{ width: '100%' }}
+      >
+        {openSnackBar.action} 
+      </Alert>
+    </Snackbar>
+  </Box>
 };
 
 export default Table;
