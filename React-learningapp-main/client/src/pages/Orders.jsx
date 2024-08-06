@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import OrdersTab from '../components/Orders/OrdersTab'
 import DatePick from '../components/Orders/DatePick'
 
@@ -35,22 +35,22 @@ const ordersDataBaseExample = [ //temporary db
     },
 ]
 
-const datesList = ['jan', 'feb', 'march','april'] // temporary dates db, need to be from the big db
+const datesList = ['jan', 'feb', 'march', 'april'] // temporary dates db, need to be from the big db
 
 function Orders() {
-    const [currentDate, setCurrentDate] = useState('')
+    const [currentDate, setCurrentDate] = useState('') // the date the choosen in the DatePick component
 
-    function dateFromDatePick(value){
+    function dateFromDatePick(value) {
         setCurrentDate(value)
     }
 
-    
+
     return (
-    
-        <div dir='rtl' style={{ width: '81vw'}}>
+        <div dir='rtl' style={{ width: '81vw' }}>
             הזמנות!
             <DatePick date={dateFromDatePick} dates={datesList} />
-            {currentDate}
+            {currentDate ? currentDate : 'date not picked'}
+            <OrdersTab />
         </div>
     )
 }

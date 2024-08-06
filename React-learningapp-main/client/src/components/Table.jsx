@@ -67,10 +67,10 @@ const Table = () => {
         minSize: 140,
         maxSize: 250,
         muiTableHeadCellProps: {
-          align: 'left',
+          align: 'center',
         },
         muiTableBodyCellProps: {
-          align: 'left',
+          align: 'center',
         },
       },
       {
@@ -81,10 +81,10 @@ const Table = () => {
         minSize: 140,
         maxSize: 250,
         muiTableHeadCellProps: {
-          align: 'left',
+          align: 'center',
         },
         muiTableBodyCellProps: {
-          align: 'left',
+          align: 'center',
         },
       },
       {
@@ -99,10 +99,10 @@ const Table = () => {
         minSize: 110,
         maxSize: 250,
         muiTableHeadCellProps: {
-          align: 'left',
+          align: 'center',
         },
         muiTableBodyCellProps: {
-          align: 'left',
+          align: 'center',
         },
       },
       {
@@ -113,17 +113,17 @@ const Table = () => {
         minSize: 130,
         maxSize: 250,
         muiTableHeadCellProps: {
-          align: 'left',
+          align: 'center',
         },
         muiTableBodyCellProps: {
-          align: 'left',
+          align: 'center',
         },
       },
       {
         accessorKey: 'Test',
         header: 'Test',
         enableEditing: true,
-        size: 230,
+        size: 250,
         minSize: 140,
         maxSize: 250,
         muiTableHeadCellProps: {
@@ -137,9 +137,9 @@ const Table = () => {
         accessorKey: 'Test',
         header: 'Test',
         enableEditing: true,
-        size: 230,
+        size: 300,
         minSize: 140,
-        maxSize: 250,
+        maxSize: 300,
         muiTableHeadCellProps: {
           align: 'left',
         },
@@ -152,7 +152,7 @@ const Table = () => {
   );
 
   const handleSnackbarClose = () => {
-    setOpenSnackBar({isOpen: false, action:''});
+    setOpenSnackBar({ isOpen: false, action: '' });
   };
 
 
@@ -162,7 +162,7 @@ const Table = () => {
       // Post values to server
       const response = await axios.post('http://localhost:3001/addCat', values);
       setData(response.data.rows);
-      setOpenSnackBar({isOpen: true, action:'cat added successfully'})
+      setOpenSnackBar({ isOpen: true, action: 'cat added successfully' })
       table.setCreatingRow(null); // Exit creating mode
     } catch (error) {
       console.error('Error creating Cat:', error);
@@ -176,7 +176,7 @@ const Table = () => {
       // Post values to server
       const response = await axios.put(`http://localhost:3001/updateCat/${rowId}`, values);
       setData(response.data.rows);
-      setOpenSnackBar({isOpen: true, action:'cat edited successfully'})
+      setOpenSnackBar({ isOpen: true, action: 'cat edited successfully' })
       table.setEditingRow(null); // Exit editing mode
     } catch (error) {
       console.error('Error updating cat:', error);
@@ -190,7 +190,7 @@ const Table = () => {
       try {
         const response = await axios.delete(`http://localhost:3001/deleteCat/${rowId}`);
         setData(response.data.rows);
-        setOpenSnackBar({isOpen: true, action:'cat removed successfully'})
+        setOpenSnackBar({ isOpen: true, action: 'cat removed successfully' })
       } catch (error) {
         console.error('Error deleting cat:', error);
       }
@@ -203,8 +203,8 @@ const Table = () => {
     createDisplayMode: 'modal',
     editDisplayMode: 'modal',
     enableEditing: true,
-    enableColumnDragging: true,
-    enableColumnOrdering: true,
+    // enableColumnDragging: true,
+    // enableColumnOrdering: true,
     enableColumnResizing: true,
     enableRowNumbers: true,
     // enableRowSelection: true,
@@ -222,7 +222,7 @@ const Table = () => {
     },
     muiTableBodyCellProps: {
       sx: {
-        borderRight: '2px solid #021526', //add a border between columns
+        borderRight: '2px solid #EEEDEB', //add a border between columns
       },
     },
     displayColumnDefOptions: {
@@ -343,7 +343,7 @@ const Table = () => {
         variant="filled"
         sx={{ width: '100%' }}
       >
-        {openSnackBar.action} 
+        {openSnackBar.action}
       </Alert>
     </Snackbar>
   </Box>
