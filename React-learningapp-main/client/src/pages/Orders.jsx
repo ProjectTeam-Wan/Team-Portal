@@ -35,22 +35,29 @@ const ordersDataBaseExample = [ //temporary db
     },
 ]
 
-const datesList = ['jan', 'feb', 'march', 'april'] // temporary dates db, need to be from the big db
+const datesList = ['jan', 'feb', 'march', 'april'] // temporary dates db
+const tabList = ['glxA', 'glxB', 'glxC', 'glxD']
 
 function Orders() {
-    const [currentDate, setCurrentDate] = useState('') // the date the choosen in the DatePick component
+    const [currentDate, setCurrentDate] = useState('') // the date the choosen in the DatePick component (the date selected in the browser)
+    const [currentTab, setCurrentTab] = useState(0)  //the tab the choosen in the OrdersTab component (the tab selected in the browser)
 
     function dateFromDatePick(value) {
         setCurrentDate(value)
     }
 
+    function tabFromOrdersTab(value) {
+        setCurrentTab(value)
+    }
+
 
     return (
-        <div dir='rtl' style={{ width: '81vw' }}>
-            הזמנות!
+        <div style={{ width: '81vw' }}>
+            Orders!
             <DatePick date={dateFromDatePick} dates={datesList} />
-            {currentDate ? currentDate : 'date not picked'}
-            <OrdersTab />
+            {currentDate ? <OrdersTab selectedTab={tabFromOrdersTab} tabs={tabList} /> : 'date not picked'}
+            {currentDate && currentTab}
+
         </div>
     )
 }

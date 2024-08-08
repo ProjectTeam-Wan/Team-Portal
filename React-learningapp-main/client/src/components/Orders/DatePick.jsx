@@ -21,11 +21,11 @@ export default function DatePick({ date, dates }) {
           displayEmpty
         >
           <MenuItem value="">
-            <em>בחר תאריך</em>
+            <em>Select Date</em>
           </MenuItem>
-          {dates.map((date) => {
+          {dates.map((date, index) => {
             return (
-              <MenuItem value={date}> {date} </MenuItem>
+              <MenuItem key={index} value={date}> {date} </MenuItem>
             )
           })
           }
