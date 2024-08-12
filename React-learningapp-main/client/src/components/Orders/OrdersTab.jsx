@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 
 
 export default function OrdersTab({ selectedTab, tabs }) {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(tabs[0]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -16,7 +16,7 @@ export default function OrdersTab({ selectedTab, tabs }) {
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider', width: 'fit-content' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" sx={{
+        <Tabs value={value} onChange={handleChange} sx={{
           '& .MuiTab-root': {
             // Default tab styles
           },
@@ -26,19 +26,11 @@ export default function OrdersTab({ selectedTab, tabs }) {
         }}>
           {tabs.map((tab, index) => {
             return (
-              <Tab key={index} label={tab} />
+              <Tab key={index} label={tab} value={tab} />
             )
           })}
         </Tabs>
       </Box>
-
-      {/* {tabs.map((tab, i) => {
-        return (
-        <CustomTabPanel value={value} index={i}>
-          {tab}
-        </CustomTabPanel>
-        )
-      })} */}
 
     </Box>
   );

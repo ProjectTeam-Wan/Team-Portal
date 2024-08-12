@@ -40,7 +40,7 @@ const tabList = ['glxA', 'glxB', 'glxC', 'glxD']
 
 function Orders() {
     const [currentDate, setCurrentDate] = useState('') // the date the choosen in the DatePick component (the date selected in the browser)
-    const [currentTab, setCurrentTab] = useState(0)  //the tab the choosen in the OrdersTab component (the tab selected in the browser)
+    const [currentTab, setCurrentTab] = useState(tabList[0])  //the tab the choosen in the OrdersTab component (the tab selected in the browser)
 
     function dateFromDatePick(value) {
         setCurrentDate(value)
@@ -56,7 +56,7 @@ function Orders() {
             Orders!
             <DatePick date={dateFromDatePick} dates={datesList} />
             {currentDate ? <OrdersTab selectedTab={tabFromOrdersTab} tabs={tabList} /> : 'date not picked'}
-            {currentDate && currentTab}
+            {currentDate && currentDate + ' ' + currentTab}
 
         </div>
     )
