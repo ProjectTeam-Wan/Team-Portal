@@ -5,7 +5,6 @@ import Select from '@mui/material/Select';
 
 export default function DatePick({ date, dates }) {
   const [selectedDate, setSelectedDate] = useState('');
-  const [datesList, setDatesList] = useState([])
 
   const handleChange = (event) => {
     setSelectedDate(event.target.value);
