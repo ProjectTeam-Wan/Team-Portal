@@ -1,15 +1,14 @@
 import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
-import AccordionActions from '@mui/material/AccordionActions';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Button from '@mui/material/Button';
+import BasicTable from '../BasicTable'
 
 export default function AccordionUsage() {
   return (
-    <div style={{marginTop: '10px'}}>
-      <Accordion>          
+    <div style={{ marginTop: '10px' }}>
+      <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"
@@ -18,8 +17,7 @@ export default function AccordionUsage() {
           add New Edge
         </AccordionSummary>
         <AccordionDetails>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          malesuada lacus ex, sit amet blandit leo lobortis eget.
+          <BasicTable />
         </AccordionDetails>
       </Accordion>
       <Accordion>
@@ -34,23 +32,6 @@ export default function AccordionUsage() {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
           malesuada lacus ex, sit amet blandit leo lobortis eget.
         </AccordionDetails>
-      </Accordion>
-      <Accordion defaultExpanded>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3-content"
-          id="panel3-header"
-        >
-          Accordion Actions
-        </AccordionSummary>
-        <AccordionDetails>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          malesuada lacus ex, sit amet blandit leo lobortis eget.
-        </AccordionDetails>
-        <AccordionActions>
-          <Button>Cancel</Button>
-          <Button>Agree</Button>
-        </AccordionActions>
       </Accordion>
     </div>
   );
