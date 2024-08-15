@@ -12,21 +12,32 @@ import {
     DialogTitle,
     IconButton,
     Tooltip,
+    Grid,
+    TextField,
+    Typography,
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Test from './Test';
 
 const BasicTable = () => {
-    //should be memoized or stable
-    const [data, setDate] = useState([
+    const [oppEdges, setOppEdges] = useState({
+        a: 1,
+        b: 2,
+        c: 3,
+        d: 4,
+        e: 5,
+    });
+
+    const [data, setData] = useState([
         {
             name: {
                 firstName: 'John',
                 lastName: 'Doe',
             },
             address: '261 Erdman Ford',
-            city: 'East Daphne',
-            state: 'Kentucky',
+            city: <Test list={Object.keys(oppEdges)} />,
+            state: <Test list={Object.values(oppEdges)} />,
         },
         {
             name: {
@@ -37,39 +48,18 @@ const BasicTable = () => {
             city: 'Columbus',
             state: 'Ohio',
         },
-        {
-            name: {
-                firstName: 'Joe',
-                lastName: 'Doe',
-            },
-            address: '566 Brakus Inlet',
-            city: 'South Linda',
-            state: 'West Virginia',
-        },
-        {
-            name: {
-                firstName: 'Kevin',
-                lastName: 'Vandy',
-            },
-            address: '722 Emie Stream',
-            city: 'Lincoln',
-            state: 'Nebraska',
-        },
-        {
-            name: {
-                firstName: 'Joshua',
-                lastName: 'Rolluffs',
-            },
-            address: '32188 Larkin Turnpike',
-            city: 'Charleston',
-            state: 'South Carolina',
-        }
-    ])
+        // Other rows...
+    ]);
+
+    // State to manage the editable oppEdges
+    const [editableOppEdges, setEditableOppEdges] = useState(
+        Object.entries(oppEdges).map(([key, value]) => ({ key, value }))
+    );
 
     const columns = useMemo(
         () => [
             {
-                accessorKey: 'name.firstName', //access nested data with dot notation
+                accessorKey: 'name.firstName',
                 header: 'First Name',
                 size: 150,
             },
@@ -79,7 +69,7 @@ const BasicTable = () => {
                 size: 150,
             },
             {
-                accessorKey: 'address', //normal accessorKey
+                accessorKey: 'address',
                 header: 'Address',
                 size: 200,
             },
@@ -87,65 +77,78 @@ const BasicTable = () => {
                 accessorKey: 'city',
                 header: 'City',
                 size: 150,
+                Edit: () => null,
             },
             {
                 accessorKey: 'state',
                 header: 'State',
                 size: 150,
+                Edit: () => null,
             },
         ],
-        [],
+        []
     );
 
-    // CREATE action
     const handleCreateCat = async ({ values, table }) => {
         try {
-            // Post values to server
-            // const response = await axios.post('http://localhost:3001/addCat', values);
-            // setData(response.data.rows);
-            // setOpenSnackBar({ isOpen: true, action: 'cat added successfully' })
-            table.setCreatingRow(null); // Exit creating mode
-            window.alert('new entry created!')
+            // Logic for creating a new row
+            table.setCreatingRow(null);
+            window.alert('new entry created!');
         } catch (error) {
             console.error('Error creating Cat:', error);
         }
     };
 
-    // UPDATE action
     const handleSaveCat = async ({ values, table }) => {
-        const rowId = values.id;
         try {
-            // Post values to server
-            // const response = await axios.put(`http://localhost:3001/updateCat/${rowId}`, values);
-            // setData(response.data.rows);
-            // setOpenSnackBar({ isOpen: true, action: 'cat edited successfully' })
-            table.setEditingRow(null); // Exit editing mode
-            window.alert('entry updated!')
+            // Update the oppEdges and reflect it in the data
+            const newOppEdges = Object.fromEntries(editableOppEdges.map(({ key, value }) => [key, value]));
+            setOppEdges(newOppEdges);
+            setData(prevData =>
+                prevData.map(item =>
+                    item.name.firstName === values.name.firstName
+                        ? { ...item, city: <Test list={Object.keys(newOppEdges)} />, state: <Test list={Object.values(newOppEdges)} /> }
+                        : item
+                )
+            );
+            table.setEditingRow(null);
+            window.alert('entry updated!');
         } catch (error) {
             console.error('Error updating cat:', error);
         }
     };
 
-    // DELETE action
     const openDeleteConfirmModal = async (row) => {
-        // const rowId = row.original.id;
         if (window.confirm('Are you sure you want to delete this cat?')) {
             try {
-                //     const response = await axios.delete(`http://localhost:3001/deleteCat/${rowId}`);
-                //     setData(response.data.rows);
-                console.log('row deleted!!')
-                window.alert('row deleted!!')
-                // setOpenSnackBar({ isOpen: true, action: 'cat removed successfully' })
+                // Logic for deleting a row
+                console.log('row deleted!!');
+                window.alert('row deleted!!');
             } catch (error) {
                 console.error('Error deleting cat:', error);
             }
         }
     };
 
+    const handleEditableOppEdgesChange = (index, field, value) => {
+        setEditableOppEdges(prev =>
+            prev.map((item, i) =>
+                i === index ? { ...item, [field]: value } : item
+            )
+        );
+    };
+
+    const handleAddKeyValue = () => {
+        setEditableOppEdges(prev => [...prev, { key: '', value: '' }]);
+    };
+
+    const handleRemoveKeyValue = (index) => {
+        setEditableOppEdges(prev => prev.filter((_, i) => i !== index));
+    };
 
     const table = useMaterialReactTable({
         columns,
-        data, //data must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
+        data,
         createDisplayMode: 'modal',
         editDisplayMode: 'modal',
         enableColumnActions: false,
@@ -155,16 +158,15 @@ const BasicTable = () => {
         enableEditing: true,
         enableTopToolbar: false,
         enableBottomToolbar: false,
-
         displayColumnDefOptions: {
             'mrt-row-actions': {
-                header: 'Actions', //change header text
-                size: 100, //make actions column wider
+                header: 'Actions',
+                size: 100,
                 muiTableHeadCellProps: {
-                    align: 'center', //change actions head cell props
+                    align: 'center',
                 },
                 muiTableBodyCellProps: {
-                    align: 'center', //change actions head cell props
+                    align: 'center',
                 },
             },
         },
@@ -187,6 +189,45 @@ const BasicTable = () => {
                 <DialogTitle variant="h4">Edit Cat</DialogTitle>
                 <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                     {internalEditComponents}
+                    <Typography variant="h6">Edit oppEdges</Typography>
+                    <Grid container spacing={2}>
+                        {editableOppEdges.map((entry, index) => (
+                            <Grid item xs={12} key={index}>
+                                <Grid container spacing={2}>
+                                    <Grid item xs={5}>
+                                        <TextField
+                                            label="Key"
+                                            value={entry.key}
+                                            onChange={(e) => handleEditableOppEdgesChange(index, 'key', e.target.value)}
+                                            fullWidth
+                                        />
+                                    </Grid>
+                                    <Grid item xs={5}>
+                                        <TextField
+                                            label="Value"
+                                            type="number"
+                                            value={entry.value}
+                                            onChange={(e) => handleEditableOppEdgesChange(index, 'value', e.target.value)}
+                                            fullWidth
+                                        />
+                                    </Grid>
+                                    <Grid item xs={2}>
+                                        <Button
+                                            color="error"
+                                            onClick={() => handleRemoveKeyValue(index)}
+                                        >
+                                            Remove
+                                        </Button>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        ))}
+                        <Grid item xs={12}>
+                            <Button variant="outlined" onClick={handleAddKeyValue}>
+                                Add Key-Value Pair
+                            </Button>
+                        </Grid>
+                    </Grid>
                 </DialogContent>
                 <DialogActions>
                     <MRT_EditActionButtons variant="text" table={table} row={row} />
@@ -211,7 +252,7 @@ const BasicTable = () => {
                 </Button>
             </div>
         </div>
-    )
+    );
 };
 
 export default BasicTable;
