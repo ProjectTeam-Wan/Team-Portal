@@ -50,7 +50,7 @@ function CatConf() {
         } else {
             setButtonShow(false)
             setForm('')
-            setConf(<h2> pick a cat </h2>)
+            setConf(<h2> Choose a cat </h2>)
         }
     }, [formData, handleChange]);
 

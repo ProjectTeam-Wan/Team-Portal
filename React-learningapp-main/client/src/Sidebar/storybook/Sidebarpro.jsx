@@ -18,6 +18,8 @@ import Homepage from "../../pages/Homepage"
 import { Link } from "react-router-dom"
 import './sidebarpro.css'
 import { FaCat, FaTable } from "react-icons/fa";
+import { MdOutlineBorderColor } from "react-icons/md";
+
 
 
 
@@ -189,6 +191,16 @@ export const Sidebarpro = () => {
                 }
               >
                 Cats Table
+              </MenuItem>
+            </Link>
+          </Menu>
+          <Menu menuItemStyles={menuItemStyles}>
+            <Link to="/orders" style={{ textDecoration: 'none' }}>
+              <MenuItem
+                icon={<MdOutlineBorderColor />
+                }
+              >
+                Orders
               </MenuItem>
             </Link>
           </Menu>

@@ -1,0 +1,39 @@
+CREATE TABLE newedge (
+	id serial primary key,
+	date text not null,
+	encGroup text not null,
+	type text,
+	newEdgeName text,
+	edgeCharge text,
+	edgeCopy text,
+	oppEdges JSONB
+)
+
+insert into newedge (date, encGroup, type, newEdgeName, edgeCharge, edgeCopy,oppEdges)
+values ('jan2024', 'glxA','45','111B','ofek','ofek','{"bakara":3333, "work":4444}'),
+('jan2024', 'glxA','47','111A','ofek','ofek','{"bakara":1111, "work":2222}')
+
+select * from newedge
+
+
+==================================================================================
+
+CREATE TABLE changeedgename (
+	id serial primary key,
+	date text not null,
+	catGroup text not null,
+	existEdgeName text,
+	edgeMark text,
+	newEdgeName text
+)
+
+insert into changeedgename (date, catGroup, existEdgeName, edgeMark, newEdgeName)
+values ('jan2024', 'glxA','eliran','1234','Ariel'),
+('jan2024', 'glxA','naor','1234','farjun')
+
+select * from changeedgename
+
+
+======================================================================================
+select DISTINCT catGroup from newedge, changeedgename 
+	where newedge.date = 'jan2024' or changeedgename.date = 'jan2024'

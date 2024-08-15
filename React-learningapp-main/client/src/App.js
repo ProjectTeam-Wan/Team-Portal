@@ -5,7 +5,8 @@ import { Sidebarpro } from './Sidebar/storybook/Sidebarpro'
 import CatConf from './pages/CatConf'
 import './app.css'
 import CatsTable from './pages/CatsTable'
-// import Table from './components/Table'
+import PageNotFound from './pages/PageNotFound'
+import Orders from './pages/Orders'
 
 
 
@@ -19,6 +20,8 @@ function App() {
               <Route path="/" element={<Homepage />} />
               <Route path='/catconf' element={<CatConf />} />
               <Route path='/catsTable' element={<CatsTable />} />
+              <Route path='/orders' element={<Orders />} />
+              <Route path='*' element={<PageNotFound />} />
             </Routes>
           </div>
       </BrowserRouter>
