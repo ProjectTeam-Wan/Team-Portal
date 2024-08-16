@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Homepage from './pages/Homepage'
-import { Sidebarpro } from './Sidebar/storybook/Sidebarpro'
-import CatConf from './pages/CatConf'
-import './app.css'
-import { Sidebar } from './Sidebar2/Sidebar'
-
-
+import React, { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Homepage from "./pages/Homepage";
+import { Sidebarpro } from "./Sidebar/storybook/Sidebarpro";
+import CatConf from "./pages/CatConf";
+import { Sidebar } from "./Sidebar2/Sidebar";
+import "./app.css";
+import CatsTable from "./pages/CatsTable";
+import PageNotFound from "./pages/PageNotFound";
+import Orders from "./pages/Orders";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -15,16 +16,17 @@ function App() {
   };
 
   return (
-
-    <BrowserRouter >
+    <BrowserRouter>
       <div className="app-container">
-        {/* <Sidebarpro /> */}
-        <Sidebar onToggle={handleToggleSidebar}/>
+        <Sidebar onToggle={handleToggleSidebar} />
         {/* <main> */}
-        <div className={`main-content ${isSidebarOpen ? 'shifted' : ''}`}>
+        <div className={`main-content ${isSidebarOpen ? "shifted" : ""}`}>
           <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path='/catconf' element={<CatConf />} />
+            <Route path="/catconf" element={<CatConf />} />
+            <Route path="/catsTable" element={<CatsTable />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </div>
         {/* </main> */}
@@ -32,23 +34,7 @@ function App() {
     </BrowserRouter>
 
     // </div >
-
-  )
-
-
-  // return (
-  //   <Router>
-  //     <div className="app-container">
-  //       <Sidebar onToggle={handleToggleSidebar} />
-  //       <div className={`main-content ${isSidebarOpen ? 'shifted' : ''}`}>
-  //         <Switch>
-  //           <Route path="/cat-config" component={CatConfig} />
-  //           <Route path="/cat-view" component={CatView} />
-  //         </Switch>
-  //       </div>
-  //     </div>
-  //   </Router>
-  // );
+  );
 }
 
-export default App
+export default App;
