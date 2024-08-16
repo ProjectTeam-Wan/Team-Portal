@@ -1,8 +1,10 @@
 .appMainPage {
     margin-left: 30px;
-    padding: 16px 24px;
+    display: flex;
+    padding: 10px 15px;
     color: #44596e;
     width: 100%;
+    background-color: lightblue;
 }
 
 
