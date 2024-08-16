@@ -44,7 +44,7 @@ export const Sidebar = ({ onToggle }) => {
           <div className="sidebar-item">
             <FaTable className="icon" />
             <span className={`sidebar-text ${isOpen ? "fade-in" : ""}`}>
-              Cat Config
+              Cat Table
             </span>
           </div>
         </Link>
@@ -52,7 +52,7 @@ export const Sidebar = ({ onToggle }) => {
           <div className="sidebar-item">
             <FaPencilAlt className="icon" />
             <span className={`sidebar-text ${isOpen ? "fade-in" : ""}`}>
-              Cat Config
+              Orders
             </span>
           </div>
         </Link>
