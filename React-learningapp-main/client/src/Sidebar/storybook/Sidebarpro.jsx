@@ -177,6 +177,7 @@ export const Sidebarpro = () => {
           </div>
           <Menu menuItemStyles={menuItemStyles}>
             <Link to="/catconf" style={{ textDecoration: 'none' }}>
+
               <MenuItem
                 icon={<FaCat />}
               >

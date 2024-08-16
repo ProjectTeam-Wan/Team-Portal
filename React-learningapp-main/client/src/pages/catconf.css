@@ -1,4 +1,9 @@
-.form{
+.cat-conf-div {
+    display: flex;
+    flex-direction: row;
+}
+
+.form {
     width: 50%;
     margin-left: 15px;  
     margin-right: 20px;
@@ -6,6 +11,7 @@
     padding: 10px;
     flex: 1;
 }
+
 .conf{
     width: 50%;
     margin-left: 20px;

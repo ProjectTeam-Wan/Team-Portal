@@ -1,7 +1,29 @@
-.appMainPage{
+.appMainPage {
+    margin-left: 30px;
     display: flex;
     padding: 10px 15px;
     color: #44596e;
     width: 100%;
     background-color: lightblue;
 }
+
+
+/* App.css */
+.app-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    transition: margin-left 0.3s;
+    margin-left: 60px;
+    padding: 20px;
+
+}
+
+.main-content.shifted {
+    margin-left: 200px;
+    /* margin when sidebar is open */
+}
+
+

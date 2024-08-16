@@ -67,6 +67,7 @@ function CatConf() {
         setTimeout(() => setCopyStatus(false), 2000); // Reset status after 2 seconds
     }
 
+
     function downloadTxtFile() {
         const element = document.createElement("a");
         const file = new Blob([document.getElementById('copy-area').innerText], { type: 'text/plain' });
@@ -77,6 +78,7 @@ function CatConf() {
     }
 
     return (
+
         <div className='container'>
             <div className='header'>
                 <h1>Welcome to cat configuration generator</h1>
@@ -109,6 +111,7 @@ function CatConf() {
                     </div>
                 </div>
             </div>
+
         </div>
     )
 }
