@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import { Sidebarpro } from "./Sidebar/storybook/Sidebarpro";
 import CatConf from "./pages/CatConf";
-import { Sidebar } from "./Sidebar2/Sidebar";
+import { Sidebar } from "./Sidebar/Sidebar";
 import "./app.css";
 import CatsTable from "./pages/CatsTable";
 import PageNotFound from "./pages/PageNotFound";
@@ -35,7 +35,6 @@ function App() {
 
     // </div >
   );
-
 }
 
 export default App;
