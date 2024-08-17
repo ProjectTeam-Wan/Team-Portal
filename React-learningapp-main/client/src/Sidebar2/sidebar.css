@@ -4,9 +4,10 @@
   top: 0;
   height: 100%;
   width: 60px;
-  padding: 10px;
+  padding: 3px;
+  margin: 0;
   /* default width when closed */
-  background-color: #0b2a49;
+  background-color: rgb(11, 42, 73);
   transition: width 0.3s;
   display: flex;
   flex-direction: column;
@@ -18,17 +19,19 @@
   /* width when open */
 }
 
+/* Sidebar header */
 .sidebar-header {
   display: flex;
   width: 100%;
-  transition: background 0.5s, transform 0.5s ease-in-out;
-  padding: 10px;
+  padding: 5px;
   margin: 0;
+  border: none;
+  transition: background 0.5s, transform 0.5s ease-in-out;
+  transition: background-color 2s ease-out, transform 2s ease-out;
 }
 .sidebar.open .sidebar-header:hover {
-  border: 1px solid;
-  border-radius: 10px;
-  background-color: rgb(24, 86, 149);
+  background-color: rgb(43, 114, 185);
+  transition: background-color 0.1s ease-in, transform 0.1s ease-in-out;
 }
 
 .sidebar-header span {
@@ -37,6 +40,7 @@
   opacity: 0;
   color: rgb(0, 152, 228);
   transform: translateX(-10px);
+  margin-left: 10px;
 }
 
 .sidebar.open .sidebar-header span {
@@ -45,6 +49,9 @@
   transition: opacity 0.8s ease-in-out, transform 0.5s ease-in-out;
 }
 
+button:hover {
+  background: none;
+}
 .hamburger {
   padding: 0;
   background: none;
@@ -55,7 +62,7 @@
   background-color: none;
 }
 
-
+/* start design for item in sidebar */
 .sidebar-menu {
   margin-top: 20px;
   width: 100%;
@@ -67,14 +74,23 @@
   align-items: center;
   width: 100%;
   height: 40px;
-  padding: 10px;
+  padding: 5px;
   margin-bottom: 20px;
   cursor: pointer;
   transition: background 0.3s, transform 0.3s ease-in-out;
+  transition: background-color 2s ease-out, transform 2s ease-out;
 }
 
-.sidebar-item:hover {
-  background-color: #b62626;
+.sidebar.open .sidebar-item:hover {
+  background-color: rgb(43, 114, 185);
+  transition: background-color 0.1s ease-in, transform 0.1s ease-in-out;
+}
+
+.sidebar.open .sidebar-item:hover .sidebar-item-text {
+  opacity: 1;
+  color: #fff;
+  transform: translateX(0);
+  transition: opacity 0.8s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .icon {
@@ -88,17 +104,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #45b4e8;
+  color: rgb(69, 180, 232);
 }
 
-.sidebar-text {
-  color: #c5cace;
+
+.sidebar-item-text {
+  color: rgb(110, 148, 189);
   opacity: 0;
   margin-left: 15px;
   transform: translateX(-20px);
 }
 
-.sidebar.open .sidebar-text {
+.sidebar.open .sidebar-item-text {
   opacity: 1;
   transform: translateX(0);
   transition: opacity 0.8s ease-in-out, transform 0.3s ease-in-out;
