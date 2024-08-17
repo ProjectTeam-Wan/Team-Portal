@@ -27,7 +27,7 @@
   margin: 0;
   border: none;
   transition: background 0.5s, transform 0.5s ease-in-out;
-  transition: background-color 2s ease-out, transform 2s ease-out;
+  transition: background-color 1s ease-out, transform 1s ease-out;
 }
 .sidebar.open .sidebar-header:hover {
   background-color: rgb(43, 114, 185);
@@ -78,7 +78,7 @@ button:hover {
   margin-bottom: 20px;
   cursor: pointer;
   transition: background 0.3s, transform 0.3s ease-in-out;
-  transition: background-color 2s ease-out, transform 2s ease-out;
+  transition: background-color 1s ease-out, transform 1s ease-out;
 }
 
 .sidebar.open .sidebar-item:hover {
@@ -106,7 +106,6 @@ button:hover {
   justify-content: center;
   color: rgb(69, 180, 232);
 }
-
 
 .sidebar-item-text {
   color: rgb(110, 148, 189);
