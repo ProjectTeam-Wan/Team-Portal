@@ -17,7 +17,7 @@ export const Sidebar = ({ onToggle }) => {
     >
       <div className="sidebar-header">
         <button className="hamburger" onClick={toggleSidebar}>
-          <FaBars />
+          <FaBars className="hamburger-icon" />
         </button>
         <Link to="/" style={{ textDecoration: "none", color: "#fff" }}>
           <span>ProjectTeam</span>
@@ -26,33 +26,33 @@ export const Sidebar = ({ onToggle }) => {
       <div className="sidebar-menu">
         <Link to="/" style={{ textDecoration: "none", color: "#fff" }}>
           <div className="sidebar-item">
-            <FaHome className="icon" />
-            <span className={`sidebar-text ${isOpen ? "fade-in" : ""}`}>
+            <FaHome className="icon" title="Home"/>
+            <span className={`sidebar-item-text ${isOpen ? "fade-in" : ""}`} >
               Home
             </span>
           </div>
         </Link>
         <Link to="/catconf" style={{ textDecoration: "none", color: "#fff" }}>
           <div className="sidebar-item">
-            <FaCat className="icon" />
-            <span className={`sidebar-text ${isOpen ? "fade-in" : ""}`}>
+            <FaCat className="icon" title="Cat Config"/>
+            <span className={`sidebar-item-text ${isOpen ? "fade-in" : ""}`}>
               Cat Config
             </span>
           </div>
         </Link>
         <Link to="/catsTable" style={{ textDecoration: "none", color: "#fff" }}>
           <div className="sidebar-item">
-            <FaTable className="icon" />
-            <span className={`sidebar-text ${isOpen ? "fade-in" : ""}`}>
-              Cat Config
+            <FaTable className="icon" title="Cat table"/>
+            <span className={`sidebar-item-text ${isOpen ? "fade-in" : ""}`}>
+              Cat Table
             </span>
           </div>
         </Link>
         <Link to="/orders" style={{ textDecoration: "none", color: "#fff" }}>
           <div className="sidebar-item">
-            <FaPencilAlt className="icon" />
-            <span className={`sidebar-text ${isOpen ? "fade-in" : ""}`}>
-              Cat Config
+            <FaPencilAlt className="icon" title="Orders"/>
+            <span className={`sidebar-item-text ${isOpen ? "fade-in" : ""}`}>
+              Orders
             </span>
           </div>
         </Link>
