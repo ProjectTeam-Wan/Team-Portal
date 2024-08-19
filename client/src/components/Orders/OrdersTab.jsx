@@ -6,7 +6,6 @@ import Box from '@mui/material/Box';
 
 export default function OrdersTab({ selectedTab, tabs }) {
   const [value, setValue] = React.useState(tabs[0]);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
     selectedTab(newValue)

@@ -89,10 +89,12 @@ app.get("/getDates", async (req, res) => {
 
 app.get("/getTabs", async (req, res) => {
   console.log(req.query.date)
-  // const result = await db.query("select distinct encGroup from orders where date = $1",[date]);
-  // const datesArray = result.rows.map(row => row.date)
-  res.status(201)
-  // res.json(datesArray);
+  const date = req.query.date
+  const result = await db.query("select distinct encGroup from orders where date = $1",[date]);
+  console.log(result.rows)
+  const tabsArray = result.rows.map(row => row.encgroup)
+  console.log(tabsArray);
+  res.json(tabsArray);
 });
 
 // Orders Tables //

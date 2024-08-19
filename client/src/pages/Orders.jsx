@@ -74,7 +74,7 @@ function Orders() {
     const [dates, setDates] = useState([])
     const [tabsList, setTabsList] = useState([])
     const [currentDate, setCurrentDate] = useState('') // the date the choosen in the DatePick component (the date selected in the browser)
-    const [currentTab, setCurrentTab] = useState(tabList[0])  //the tab the choosen in the OrdersTab component (the tab selected in the browser)
+    const [currentTab, setCurrentTab] = useState(tabsList[0])  //the tab the choosen in the OrdersTab component (the tab selected in the browser)
 
     useEffect(() => {
         async function datesList() {
@@ -91,19 +91,18 @@ function Orders() {
       //tablist
 
 
-    async function dateFromDatePick(value) {
-        setCurrentDate(value)
-        console.log(value)
+    async function dateFromDatePick(date) {
+        setCurrentDate(date)
         try {
-            const response = await axios.get('http://localhost:3001/getTabs', {params: { date: value }}); // get request from the server
-            // setTabsList(response.data)
-            console.log(response.data)
+            const response = await axios.get('http://localhost:3001/getTabs', {params: { date: date }}); // get request from the server
+            setTabsList(response.data)
         } catch (error) {
             console.log(error.message);
         }
     }
 
     function tabFromOrdersTab(value) {
+        console.log('this is the value form the OrdersTab:' + value)
         setCurrentTab(value)
     }
 
@@ -112,8 +111,10 @@ function Orders() {
         <div style={{ width: '81vw' }}>
             Orders!
             <DatePick onChange={dateFromDatePick} dates={dates} />
-            {currentDate ? <OrdersTab selectedTab={tabFromOrdersTab} tabs={tabList} /> : 'date not picked'}
+            {currentDate ? <OrdersTab selectedTab={tabFromOrdersTab} tabs={tabsList} /> : 'date not picked'}
             {currentDate && currentDate + ' ' + currentTab}
+            {/* {currentDate ? <OrdersTab tabs={tabsList} /> : 'date not picked'} */}
+            {/* {currentDate && currentDate + ' '} */}
             {currentDate === 'jan' ? <AccordionUsage /> : null}
 
         </div>
