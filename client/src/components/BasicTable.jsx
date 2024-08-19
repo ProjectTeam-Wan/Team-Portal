@@ -31,24 +31,23 @@ const BasicTable = () => {
 
     const [data, setData] = useState([
         {
-            name: {
-                firstName: 'John',
-                lastName: 'Doe',
-            },
-            address: '261 Erdman Ford',
-            city: <Test list={Object.keys(oppEdges)} />,
-            state: <Test list={Object.values(oppEdges)} />,
+            id: 1,
+            type: 45,
+            newEdgeName: 'John',
+            edgeCharge: 'Doe',
+            edgeCopy: '261 Erdman Ford',
+            oppEdgeName: <Test list={Object.keys(oppEdges)} />,
+            oppEdgeMark: <Test list={Object.values(oppEdges)} />,
         },
         {
-            name: {
-                firstName: 'Jane',
-                lastName: 'Doe',
-            },
-            address: '769 Dominic Grove',
-            city: 'Columbus',
-            state: 'Ohio',
+            id: 2,
+            type: 47,
+            newEdgeName: 'Jane',
+            edgeCharge: 'Doe',
+            edgeCopy: '769 Dominic Grove',
+            oppEdgeName: 'Columbus',
+            oppEdgeMark: 'Ohio',
         },
-        // Other rows...
     ]);
 
     // State to manage the editable oppEdges
@@ -59,29 +58,39 @@ const BasicTable = () => {
     const columns = useMemo(
         () => [
             {
-                accessorKey: 'name.firstName',
-                header: 'First Name',
+                accessorKey: 'id',
+                header: 'ID',
                 size: 150,
             },
             {
-                accessorKey: 'name.lastName',
-                header: 'Last Name',
+                accessorKey: 'type',
+                header: 'Type',
                 size: 150,
             },
             {
-                accessorKey: 'address',
-                header: 'Address',
+                accessorKey: 'newEdgeName',
+                header: 'New Edge Name',
+                size: 150,
+            },
+            {
+                accessorKey: 'edgeCharge',
+                header: 'Edge Charge',
                 size: 200,
             },
             {
-                accessorKey: 'city',
-                header: 'City',
+                accessorKey: 'edgeCopy',
+                header: 'Edge Copy',
+                size: 200,
+            },
+            {
+                accessorKey: 'oppEdgeName',
+                header: 'Opp Edge Name',
                 size: 150,
                 Edit: () => null,
             },
             {
-                accessorKey: 'state',
-                header: 'State',
+                accessorKey: 'oppEdgeMark',
+                header: 'Opp Edge Mark',
                 size: 150,
                 Edit: () => null,
             },
@@ -106,8 +115,8 @@ const BasicTable = () => {
             setOppEdges(newOppEdges);
             setData(prevData =>
                 prevData.map(item =>
-                    item.name.firstName === values.name.firstName
-                        ? { ...item, city: <Test list={Object.keys(newOppEdges)} />, state: <Test list={Object.values(newOppEdges)} /> }
+                    item.id === values.id
+                        ? { ...item, oppEdgeName: <Test list={Object.keys(newOppEdges)} />, oppEdgeMark: <Test list={Object.values(newOppEdges)} /> }
                         : item
                 )
             );

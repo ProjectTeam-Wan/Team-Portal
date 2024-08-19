@@ -3,12 +3,12 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export default function DatePick({ date, dates }) {
+export default function DatePick({ onChange, dates }) {
   const [selectedDate, setSelectedDate] = useState('');
 
   const handleChange = (event) => {
     setSelectedDate(event.target.value);
-    date(event.target.value)
+    onChange(event.target.value)
   };
 
   return (

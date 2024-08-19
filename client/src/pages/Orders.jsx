@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
+import axios from 'axios'
 import OrdersTab from '../components/Orders/OrdersTab'
 import DatePick from '../components/Orders/DatePick'
 import AccordionUsage from '../components/Orders/AccordionUsage'
@@ -36,7 +37,7 @@ const ordersDataBaseExample = [ //temporary db
     },
 ]
 
-const datesList = ['jan', 'feb', 'march', 'april'] // temporary dates db
+// const datesList = ['jan', 'feb', 'march', 'april'] // temporary dates db
 const tabList = ['glxA', 'glxB', 'glxC', 'glxD']
 const actions = [{
     addEdge: {
@@ -70,11 +71,36 @@ const actions = [{
 ]
 
 function Orders() {
+    const [dates, setDates] = useState([])
+    const [tabsList, setTabsList] = useState([])
     const [currentDate, setCurrentDate] = useState('') // the date the choosen in the DatePick component (the date selected in the browser)
     const [currentTab, setCurrentTab] = useState(tabList[0])  //the tab the choosen in the OrdersTab component (the tab selected in the browser)
 
-    function dateFromDatePick(value) {
+    useEffect(() => {
+        async function datesList() {
+            try {
+                const response = await axios.get('http://localhost:3001/getDates'); // get request from the server
+                setDates(response.data)
+            } catch (error) {
+                console.log(error.message);
+            }
+        };
+        datesList();
+      }, []);
+
+      //tablist
+
+
+    async function dateFromDatePick(value) {
         setCurrentDate(value)
+        console.log(value)
+        try {
+            const response = await axios.get('http://localhost:3001/getTabs', {params: { date: value }}); // get request from the server
+            // setTabsList(response.data)
+            console.log(response.data)
+        } catch (error) {
+            console.log(error.message);
+        }
     }
 
     function tabFromOrdersTab(value) {
@@ -85,7 +111,7 @@ function Orders() {
     return (
         <div style={{ width: '81vw' }}>
             Orders!
-            <DatePick date={dateFromDatePick} dates={datesList} />
+            <DatePick onChange={dateFromDatePick} dates={dates} />
             {currentDate ? <OrdersTab selectedTab={tabFromOrdersTab} tabs={tabList} /> : 'date not picked'}
             {currentDate && currentDate + ' ' + currentTab}
             {currentDate === 'jan' ? <AccordionUsage /> : null}

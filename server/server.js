@@ -19,14 +19,11 @@ app.use(express.json()); // For parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors()); // Enable CORS
 
-async function getCats() {
-  let result = await db.query("SELECT * FROM cats");
-  return result.rows;
-}
+// Cat Table API //
 
 app.get("/getCats", async (req, res) => {
-  const data = await getCats();
-  res.json(data);
+  const result = await db.query("SELECT * FROM cats");
+  res.json(result.rows);
 });
 
 app.post("/addCat", async (req, res) => {
@@ -79,6 +76,26 @@ app.delete("/deleteCat/:id", async (req, res) => {
     console.log(err);
   }
 });
+// Cat Table API //
+
+
+// Orders Tables //
+
+app.get("/getDates", async (req, res) => {
+  const result = await db.query("select Distinct date from orders");
+  const datesArray = result.rows.map(row => row.date)
+  res.json(datesArray);
+});
+
+app.get("/getTabs", async (req, res) => {
+  console.log(req.query.date)
+  // const result = await db.query("select distinct encGroup from orders where date = $1",[date]);
+  // const datesArray = result.rows.map(row => row.date)
+  res.status(201)
+  // res.json(datesArray);
+});
+
+// Orders Tables //
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

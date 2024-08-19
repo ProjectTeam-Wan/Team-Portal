@@ -3,9 +3,9 @@ import React from 'react'
 function Test({ list }) {
     return (
         <div>
-            {list.map((item) => {
+            {list.map((item, index) => {
                 return (
-                    <p>{item}</p>
+                    <p key={index}>{item}</p>
                 )
             })}
         </div>
