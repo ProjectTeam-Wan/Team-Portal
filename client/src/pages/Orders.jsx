@@ -73,8 +73,8 @@ const actions = [{
 function Orders() {
     const [dates, setDates] = useState([])
     const [tabsList, setTabsList] = useState([])
-    const [currentDate, setCurrentDate] = useState('') // the date the choosen in the DatePick component (the date selected in the browser)
-    const [currentTab, setCurrentTab] = useState(tabsList[0])  //the tab the choosen in the OrdersTab component (the tab selected in the browser)
+    const [currentDate, setCurrentDate] = useState('') // the date the choosen in the DatePick component (the selected date in the browser)
+    const [currentTab, setCurrentTab] = useState('')  //the tab the choosen in the OrdersTab component (the selected tab in the browser)
 
     useEffect(() => {
         async function datesList() {
@@ -96,13 +96,13 @@ function Orders() {
         try {
             const response = await axios.get('http://localhost:3001/getTabs', {params: { date: date }}); // get request from the server
             setTabsList(response.data)
+            setCurrentTab(response.data[0])
         } catch (error) {
             console.log(error.message);
         }
     }
 
     function tabFromOrdersTab(value) {
-        console.log('this is the value form the OrdersTab:' + value)
         setCurrentTab(value)
     }
 
@@ -111,11 +111,9 @@ function Orders() {
         <div style={{ width: '81vw' }}>
             Orders!
             <DatePick onChange={dateFromDatePick} dates={dates} />
-            {currentDate ? <OrdersTab selectedTab={tabFromOrdersTab} tabs={tabsList} /> : 'date not picked'}
-            {currentDate && currentDate + ' ' + currentTab}
-            {/* {currentDate ? <OrdersTab tabs={tabsList} /> : 'date not picked'} */}
-            {/* {currentDate && currentDate + ' '} */}
-            {currentDate === 'jan' ? <AccordionUsage /> : null}
+            {currentDate && tabsList.length > 0 ? <OrdersTab selectedTab={tabFromOrdersTab} tabs={tabsList} /> : 'date not picked'}
+            {currentDate && currentTab ? currentDate + ' ' + currentTab : null}
+            {/* {currentDate === 'jan2024' && currentTab === 'glxA' ? <AccordionUsage /> : null} */}
 
         </div>
     )
