@@ -1,0 +1,54 @@
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: rgb(199, 208, 218);
+}
+
+.topbar-left {
+  flex-grow: 1;
+}
+
+.topbar-center {
+  flex-grow: 1;
+  text-align: center;
+}
+.topbar-center h1 {
+  font-size: clamp(20px, 5vw, 50px);
+  color: #45b4e8;
+}
+
+.topbar-right {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logo {
+  justify-self: flex-end;
+  height: clamp(60px, 2vw, 100px);
+}
+
+/* Sidebar header */
+.sidebar-header {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  margin: 0;
+  border: none;
+  transition: background 0.5s, transform 0.5s ease-in-out;
+}
+
+button:hover {
+  background: none;
+}
+
+.hamburger {
+  padding: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #45b4e8;
+  font-size: clamp(20px, 2vw, 40px);
+}

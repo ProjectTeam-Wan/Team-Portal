@@ -1,65 +1,39 @@
-.sidebar {
+.sidebar.closed {
+  display: none;
+  position: absolute;
+}
+
+.sidebar.open {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(199, 208, 218);
   position: absolute;
   left: 0;
   top: 0;
   height: 100%;
-  width: 60px;
+  width: fit-content;
   padding: 3px;
   margin: 0;
   /* default width when closed */
-  background-color: rgb(11, 42, 73);
+  background-color: none;
   transition: width 0.3s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.sidebar.open {
-  width: fit-content;
+  z-index: 999;
   /* width when open */
 }
 
-/* Sidebar header */
-.sidebar-header {
-  display: flex;
-  width: 100%;
-  padding: 5px;
-  margin: 0;
-  border: none;
-  transition: background 0.5s, transform 0.5s ease-in-out;
-  transition: background-color 1s ease-out, transform 1s ease-out;
-}
-.sidebar.open .sidebar-header:hover {
-  background-color: rgb(43, 114, 185);
-  transition: background-color 0.1s ease-in, transform 0.1s ease-in-out;
+.sidebar.closed .close-btn {
+  display: none;
 }
 
-.sidebar-header span {
-  font-size: 25px;
-  color: #c5cace;
-  opacity: 0;
-  color: rgb(0, 152, 228);
-  transform: translateX(-10px);
-  margin-left: 10px;
-}
-
-.sidebar.open .sidebar-header span {
-  opacity: 1;
-  transform: translateX(0);
-  transition: opacity 0.8s ease-in-out, transform 0.5s ease-in-out;
-}
-
-button:hover {
-  background: none;
-}
-.hamburger {
-  padding: 0;
+.sidebar.open .close-btn {
+  padding: 10px;
   background: none;
   border: none;
   cursor: pointer;
   color: #45b4e8;
-  font-size: 30px;
-  background-color: none;
+  font-size: clamp(30px, 3vw, 50px);
 }
 
 /* start design for item in sidebar */
@@ -69,6 +43,9 @@ button:hover {
 }
 
 .sidebar-item {
+  display: none;
+}
+.sidebar.open .sidebar-item {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -77,12 +54,12 @@ button:hover {
   padding: 5px;
   margin-bottom: 20px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.3s ease-in-out;
+  transition: display 0.3s ease-in, transform 0.3s ease-in-out;
   transition: background-color 1s ease-out, transform 1s ease-out;
 }
 
 .sidebar.open .sidebar-item:hover {
-  background-color: rgb(43, 114, 185);
+  background-color: rgb(158, 164, 171);
   transition: background-color 0.1s ease-in, transform 0.1s ease-in-out;
 }
 
@@ -94,9 +71,9 @@ button:hover {
 }
 
 .icon {
-  width: 30px;
-  min-width: 30px;
-  height: 30px;
+  width: clamp(20px, 3vw, 40px);
+  min-width: 20px;
+  height: clamp(20px, 3vw, 40px);
   line-height: 30px;
   text-align: center;
   display: inline-block;
@@ -112,6 +89,7 @@ button:hover {
   opacity: 0;
   margin-left: 15px;
   transform: translateX(-20px);
+  font-size: clamp(0.5rem, 3vw, 2rem);
 }
 
 .sidebar.open .sidebar-item-text {

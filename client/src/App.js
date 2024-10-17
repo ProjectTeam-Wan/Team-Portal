@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
-import { Sidebarpro } from "./Sidebar/storybook/Sidebarpro";
 import CatConf from "./pages/CatConf";
-import { Sidebar } from "./Sidebar/Sidebar";
 import "./app.css";
 import CatsTable from "./pages/CatsTable";
 import PageNotFound from "./pages/PageNotFound";
 import Orders from "./pages/Orders";
+import { Topbar } from "./TopBar/Topbar";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -18,9 +17,9 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app-container">
-        <Sidebar onToggle={handleToggleSidebar} />
+        <Topbar SidebarToggel={handleToggleSidebar} />
         {/* <main> */}
-        <div className={`main-content ${isSidebarOpen ? "shifted" : ""}`}>
+        <div className="main-content">
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/catconf" element={<CatConf />} />
