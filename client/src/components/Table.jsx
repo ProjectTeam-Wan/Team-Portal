@@ -1,10 +1,10 @@
-import { useMemo, useState, useEffect } from 'react';
-import axios from 'axios';
+import { useMemo, useState, useEffect } from "react";
+import axios from "axios";
 import {
   MRT_EditActionButtons,
   MaterialReactTable,
   useMaterialReactTable,
-} from 'material-react-table';
+} from "material-react-table";
 import {
   Box,
   Button,
@@ -13,27 +13,25 @@ import {
   DialogTitle,
   IconButton,
   Tooltip,
-} from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
+} from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
-
-const racks = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3'] // temporary array for racks dropList
+const racks = ["A1", "A2", "A3", "B1", "B2", "B3"]; // temporary array for racks dropList
 
 const Table = () => {
   const [data, setData] = useState([]);
   const [openSnackBar, setOpenSnackBar] = useState({
     isOpen: false,
-    action: ''
+    action: "",
   });
-
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/getCats'); // get request from the server
+        const response = await axios.get("http://localhost:3001/getCats"); // get request from the server
         setData(response.data);
       } catch (error) {
         console.log(error.message);
@@ -42,54 +40,55 @@ const Table = () => {
     fetchData();
   }, []);
 
-  const columns = useMemo(       // columns definition
+  const columns = useMemo(
+    // columns definition
     () => [
       {
-        accessorKey: 'id',
-        header: 'ID',
+        accessorKey: "id",
+        header: "ID",
         enableEditing: false,
         size: 100,
         minSize: 140,
         maxSize: 250,
         muiTableHeadCellProps: {
-          align: 'left',
+          align: "left",
         },
         muiTableBodyCellProps: {
-          align: 'left',
+          align: "left",
         },
         Edit: () => null, //Exclud the id column from the edit and create windows
       },
       {
-        accessorKey: 'name',
-        header: 'Name',
+        accessorKey: "name",
+        header: "Name",
         enableEditing: true,
         size: 200,
         minSize: 140,
         maxSize: 250,
         muiTableHeadCellProps: {
-          align: 'center',
+          align: "center",
         },
         muiTableBodyCellProps: {
-          align: 'center',
+          align: "center",
         },
       },
       {
-        accessorKey: 'location',
-        header: 'Location',
+        accessorKey: "location",
+        header: "Location",
         enableEditing: true,
         size: 200,
         minSize: 140,
         maxSize: 250,
         muiTableHeadCellProps: {
-          align: 'center',
+          align: "center",
         },
         muiTableBodyCellProps: {
-          align: 'center',
+          align: "center",
         },
       },
       {
-        accessorKey: 'rack',
-        header: 'Rack',
+        accessorKey: "rack",
+        header: "Rack",
         enableEditing: true,
         editSelectOptions: racks,
         muiEditTextFieldProps: {
@@ -99,73 +98,72 @@ const Table = () => {
         minSize: 110,
         maxSize: 250,
         muiTableHeadCellProps: {
-          align: 'center',
+          align: "center",
         },
         muiTableBodyCellProps: {
-          align: 'center',
+          align: "center",
         },
       },
       {
-        accessorKey: 'mark',
-        header: 'Mark',
+        accessorKey: "mark",
+        header: "Mark",
         enableEditing: true,
         size: 150,
         minSize: 130,
         maxSize: 250,
         muiTableHeadCellProps: {
-          align: 'center',
+          align: "center",
         },
         muiTableBodyCellProps: {
-          align: 'center',
+          align: "center",
         },
       },
       {
-        accessorKey: 'Test',
-        header: 'Test',
+        accessorKey: "Test",
+        header: "Test",
         enableEditing: true,
         size: 250,
         minSize: 140,
         maxSize: 250,
         muiTableHeadCellProps: {
-          align: 'left',
+          align: "left",
         },
         muiTableBodyCellProps: {
-          align: 'left',
+          align: "left",
         },
       },
       {
-        accessorKey: 'Test',
-        header: 'Test',
+        accessorKey: "Test",
+        header: "Test",
         enableEditing: true,
         size: 300,
         minSize: 140,
         maxSize: 300,
         muiTableHeadCellProps: {
-          align: 'left',
+          align: "left",
         },
         muiTableBodyCellProps: {
-          align: 'left',
+          align: "left",
         },
       },
     ],
-    [],
+    []
   );
 
   const handleSnackbarClose = () => {
-    setOpenSnackBar({ isOpen: false, action: '' });
+    setOpenSnackBar({ isOpen: false, action: "" });
   };
-
 
   // CREATE action
   const handleCreateCat = async ({ values, table }) => {
     try {
       // Post values to server
-      const response = await axios.post('http://localhost:3001/addCat', values);
+      const response = await axios.post("http://localhost:3001/addCat", values);
       setData(response.data.rows);
-      setOpenSnackBar({ isOpen: true, action: 'cat added successfully' })
+      setOpenSnackBar({ isOpen: true, action: "cat added successfully" });
       table.setCreatingRow(null); // Exit creating mode
     } catch (error) {
-      console.error('Error creating Cat:', error);
+      console.error("Error creating Cat:", error);
     }
   };
 
@@ -174,25 +172,30 @@ const Table = () => {
     const rowId = values.id;
     try {
       // Post values to server
-      const response = await axios.put(`http://localhost:3001/updateCat/${rowId}`, values);
+      const response = await axios.put(
+        `http://localhost:3001/updateCat/${rowId}`,
+        values
+      );
       setData(response.data.rows);
-      setOpenSnackBar({ isOpen: true, action: 'cat edited successfully' })
+      setOpenSnackBar({ isOpen: true, action: "cat edited successfully" });
       table.setEditingRow(null); // Exit editing mode
     } catch (error) {
-      console.error('Error updating cat:', error);
+      console.error("Error updating cat:", error);
     }
   };
 
   // DELETE action
   const openDeleteConfirmModal = async (row) => {
     const rowId = row.original.id;
-    if (window.confirm('Are you sure you want to delete this cat?')) {
+    if (window.confirm("Are you sure you want to delete this cat?")) {
       try {
-        const response = await axios.delete(`http://localhost:3001/deleteCat/${rowId}`);
+        const response = await axios.delete(
+          `http://localhost:3001/deleteCat/${rowId}`
+        );
         setData(response.data.rows);
-        setOpenSnackBar({ isOpen: true, action: 'cat removed successfully' })
+        setOpenSnackBar({ isOpen: true, action: "cat removed successfully" });
       } catch (error) {
-        console.error('Error deleting cat:', error);
+        console.error("Error deleting cat:", error);
       }
     }
   };
@@ -200,8 +203,8 @@ const Table = () => {
   const table = useMaterialReactTable({
     columns,
     data,
-    createDisplayMode: 'modal',
-    editDisplayMode: 'modal',
+    createDisplayMode: "modal",
+    editDisplayMode: "modal",
     enableEditing: true,
     // enableColumnDragging: true,
     // enableColumnOrdering: true,
@@ -210,48 +213,48 @@ const Table = () => {
     // enableRowSelection: true,
     enableStickyHeader: true,
     enableColumnActions: false,
-    columnFilterDisplayMode: 'popover',
+    columnFilterDisplayMode: "popover",
 
     muiTableBodyProps: {
       sx: {
         //stripe the rows, make odd rows a darker color
-        '& tr:nth-of-type(odd) > td': {
-          backgroundColor: '#EEF7FF',
+        "& tr:nth-of-type(odd) > td": {
+          backgroundColor: "#EEF7FF",
         },
       },
     },
     muiTableBodyCellProps: {
       sx: {
-        borderRight: '2px solid #EEEDEB', //add a border between columns
+        borderRight: "2px solid #EEEDEB", //add a border between columns
       },
     },
     displayColumnDefOptions: {
-      'mrt-row-actions': {
-        header: 'Actions', //change header text
+      "mrt-row-actions": {
+        header: "Actions", //change header text
         size: 100, //make actions column wider
         muiTableHeadCellProps: {
-          align: 'center', //change actions head cell props
+          align: "center", //change actions head cell props
         },
         muiTableBodyCellProps: {
-          align: 'center', //change actions head cell props
+          align: "center", //change actions head cell props
         },
       },
-      'mrt-row-numbers': {
+      "mrt-row-numbers": {
         size: 30,
         muiTableHeadCellProps: {
-          align: 'center', //change row numbering head cell props
+          align: "center", //change row numbering head cell props
         },
         muiTableBodyCellProps: {
-          align: 'center', //change row numbering head cell props
+          align: "center", //change row numbering head cell props
         },
       },
-      'mrt-row-select': {
+      "mrt-row-select": {
         size: 20,
         muiTableHeadCellProps: {
-          align: 'center', //change row select head cell props
+          align: "center", //change row select head cell props
         },
         muiTableBodyCellProps: {
-          align: 'center', //change row select head cell props
+          align: "center", //change row select head cell props
         },
       },
     },
@@ -259,9 +262,9 @@ const Table = () => {
     getRowId: (row) => row.id,
     muiTableContainerProps: {
       sx: {
-        minHeight: '80vh',
-        maxHeight: '80vh',
-        maxWidth: '81vw' // just for my laptop screen!!!
+        minHeight: "80vh",
+        maxHeight: "80vh",
+        maxWidth: "81vw", // just for my laptop screen!!!
       },
     },
     onCreatingRowSave: handleCreateCat,
@@ -269,7 +272,9 @@ const Table = () => {
     renderCreateRowDialogContent: ({ table, row, internalEditComponents }) => (
       <>
         <DialogTitle variant="h4">Create New Cat</DialogTitle>
-        <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <DialogContent
+          sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+        >
           {internalEditComponents}
         </DialogContent>
         <DialogActions>
@@ -280,7 +285,9 @@ const Table = () => {
     renderEditRowDialogContent: ({ table, row, internalEditComponents }) => (
       <>
         <DialogTitle variant="h4">Edit Cat</DialogTitle>
-        <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+        <DialogContent
+          sx={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
+        >
           {internalEditComponents}
         </DialogContent>
         <DialogActions>
@@ -289,7 +296,7 @@ const Table = () => {
       </>
     ),
     renderRowActions: ({ row, table }) => (
-      <Box sx={{ display: 'flex', gap: '0.5rem' }}>
+      <Box sx={{ display: "flex", gap: "0.5rem" }}>
         <Tooltip title="Edit">
           <IconButton onClick={() => table.setEditingRow(row)}>
             <EditIcon />
@@ -303,7 +310,7 @@ const Table = () => {
       </Box>
     ),
     renderTopToolbarCustomActions: ({ table }) => (
-      <Box sx={{ display: 'flex', gap: '1rem', p: '4px' }}>
+      <Box sx={{ display: "flex", gap: "1rem", p: "4px" }}>
         <Button
           variant="contained"
           onClick={() => {
@@ -321,32 +328,33 @@ const Table = () => {
       },
       sorting: [
         {
-          id: 'id',
+          id: "id",
           desc: false,
         },
       ],
-      columnPinning: { right: ['mrt-row-actions'] },
+      columnPinning: { right: ["mrt-row-actions"] },
     },
-
   });
 
-  return <Box sx={{ width: '100%', height: '100%' }}>
-    <MaterialReactTable table={table} />
-    <Snackbar
-      open={openSnackBar.isOpen}
-      autoHideDuration={3000}
-      onClose={handleSnackbarClose}
-    >
-      <Alert
+  return (
+    <Box sx={{ width: "100%", height: "100%" }}>
+      <MaterialReactTable table={table} />
+      <Snackbar
+        open={openSnackBar.isOpen}
+        autoHideDuration={3000}
         onClose={handleSnackbarClose}
-        severity="success"
-        variant="filled"
-        sx={{ width: '100%' }}
       >
-        {openSnackBar.action}
-      </Alert>
-    </Snackbar>
-  </Box>
+        <Alert
+          onClose={handleSnackbarClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: "100%" }}
+        >
+          {openSnackBar.action}
+        </Alert>
+      </Snackbar>
+    </Box>
+  );
 };
 
 export default Table;
