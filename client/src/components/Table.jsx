@@ -203,6 +203,7 @@ const Table = () => {
   const table = useMaterialReactTable({
     columns,
     data,
+    // enableStickyFooter: true,
     createDisplayMode: "modal",
     editDisplayMode: "modal",
     enableEditing: true,
@@ -211,7 +212,7 @@ const Table = () => {
     enableColumnResizing: true,
     enableRowNumbers: true,
     // enableRowSelection: true,
-    enableStickyHeader: true,
+    // enableStickyHeader: true,
     enableColumnActions: false,
     columnFilterDisplayMode: "popover",
 
@@ -258,13 +259,13 @@ const Table = () => {
         },
       },
     },
+
     // positionActionsColumn: 'last', // make the action column to be last position
     getRowId: (row) => row.id,
     muiTableContainerProps: {
       sx: {
-        minHeight: "80vh",
-        maxHeight: "80vh",
-        maxWidth: "81vw", // just for my laptop screen!!!
+        minHeight: "75vh", // just for my laptop screen!!!
+        maxHeight: "75vh"
       },
     },
     onCreatingRowSave: handleCreateCat,
@@ -337,7 +338,7 @@ const Table = () => {
   });
 
   return (
-    <Box sx={{ width: "100%", height: "100%" }}>
+    <Box >
       <MaterialReactTable table={table} />
       <Snackbar
         open={openSnackBar.isOpen}

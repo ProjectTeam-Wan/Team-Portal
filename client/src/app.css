@@ -1,14 +1,15 @@
-.appMainPage {
+/* .appMainPage {
   margin-left: 30px;
   display: flex;
   padding: 10px 15px;
   color: #44596e;
   width: 100%;
   background-color: lightblue;
-}
+} */
 
 /* App.css */
 .app-container {
+  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -17,5 +18,8 @@
 .main-content {
   transition: margin-left 0.3s;
   padding: 10px;
-  height: auto;
+  max-height: 100vh;
+  overflow: scroll;
+  scrollbar-width: none;
+  /* height: 80%; */
 }
