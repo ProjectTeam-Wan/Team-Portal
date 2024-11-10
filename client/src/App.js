@@ -35,7 +35,16 @@ function App() {
             </Routes>
           </div>
         </div>
-        <div className="bottom-section">coperight</div>
+        <footer className="bottom-section">
+          <div className="footer-content">
+            <div className="footer-left">
+              <p>&copy; {new Date().getFullYear()} Project Team. All rights reserved.</p>
+            </div>
+            <div className="footer-center">
+              <p>Made with ❤️ by the Project Team</p>
+            </div>
+          </div>
+        </footer>
       </BrowserRouter>
     </div>
 

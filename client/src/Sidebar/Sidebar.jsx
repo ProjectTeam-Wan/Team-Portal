@@ -37,6 +37,12 @@ export const Sidebar = () => {
             <span className="sidebar-item-text">Orders</span>
           </div>
         </Link>
+        <Link to="/orders-new" style={{ textDecoration: "none", color: "#fff" }}>
+          <div className="sidebar-item">
+            <FaPencilAlt className="icon" title="Orders New" />
+            <span className="sidebar-item-text">Orders New</span>
+          </div>
+        </Link>
       </div>
     </div>
   );
