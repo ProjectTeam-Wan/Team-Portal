@@ -1,18 +1,12 @@
-.sidebar.closed {
-  display: none;
-  position: absolute;
-}
 
-.sidebar.open {
+
+.sidebar {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: rgb(199, 208, 218);
-  position: absolute;
-  left: 0;
-  top: 0;
   height: 100%;
-  width: fit-content;
+  width: 100%;
   padding: 3px;
   margin: 0;
   /* default width when closed */
@@ -23,18 +17,6 @@
   /* width when open */
 }
 
-.sidebar.closed .close-btn {
-  display: none;
-}
-
-.sidebar.open .close-btn {
-  padding: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #45b4e8;
-  font-size: clamp(30px, 3vw, 50px);
-}
 
 /* start design for item in sidebar */
 .sidebar-menu {
@@ -45,7 +27,7 @@
 .sidebar-item {
   display: none;
 }
-.sidebar.open .sidebar-item {
+.sidebar .sidebar-item {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -58,12 +40,12 @@
   transition: background-color 1s ease-out, transform 1s ease-out;
 }
 
-.sidebar.open .sidebar-item:hover {
+.sidebar .sidebar-item:hover {
   background-color: rgb(158, 164, 171);
   transition: background-color 0.1s ease-in, transform 0.1s ease-in-out;
 }
 
-.sidebar.open .sidebar-item:hover .sidebar-item-text {
+.sidebar .sidebar-item:hover .sidebar-item-text {
   opacity: 1;
   color: #fff;
   transform: translateX(0);
@@ -92,7 +74,7 @@
   font-size: clamp(0.5rem, 3vw, 2rem);
 }
 
-.sidebar.open .sidebar-item-text {
+.sidebar .sidebar-item-text {
   opacity: 1;
   transform: translateX(0);
   transition: opacity 0.8s ease-in-out, transform 0.3s ease-in-out;

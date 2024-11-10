@@ -7,6 +7,7 @@ import CatsTable from "./pages/CatsTable";
 import PageNotFound from "./pages/PageNotFound";
 import Orders from "./pages/Orders";
 import { Topbar } from "./TopBar/Topbar";
+import { Sidebar } from "./Sidebar/Sidebar";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -15,22 +16,28 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <div className="app-container">
-        <Topbar SidebarToggel={handleToggleSidebar} />
-        {/* <main> */}
-        <div className="main-content">
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/catconf" element={<CatConf />} />
-            <Route path="/catsTable" element={<CatsTable />} />
-            <Route path="/orders" element={<Orders />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
+    <div className="app-container">
+      <BrowserRouter>
+        <div className="top-section">
+          <Topbar SidebarToggel={handleToggleSidebar} />
         </div>
-        {/* </main> */}
-      </div>
-    </BrowserRouter>
+        <div className="content-section">
+          <div className="sidebar-div">
+            <Sidebar />
+          </div>
+          <div className="routes-div">
+            <Routes>
+              <Route path="/" element={<Homepage />} />
+              <Route path="/catconf" element={<CatConf />} />
+              <Route path="/catsTable" element={<CatsTable />} />
+              <Route path="/orders" element={<Orders />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </div>
+        </div>
+        <div className="bottom-section">coperight</div>
+      </BrowserRouter>
+    </div>
 
     // </div >
   );
