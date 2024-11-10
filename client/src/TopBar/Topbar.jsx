@@ -13,14 +13,14 @@ export const Topbar = ({ SidebarToggel }) => {
   };
   return (
     <div className="topbar">
-      <div className="topbar-left">
+      {/* <div className="topbar-left">
         <div className="sidebar-header">
           <button className="hamburger" onClick={toggleSidebar}>
             <FaBars className="hamburger-icon" />
           </button>
         </div>
         <Sidebar onToggle={toggleSidebar} openStatus={isOpen} />
-      </div>
+      </div> */}
 
       <div className="topbar-center">
         <h1>Project Team</h1>
